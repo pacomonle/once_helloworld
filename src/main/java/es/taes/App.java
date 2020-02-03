@@ -43,8 +43,8 @@ public class App {
         String sql;
         sql = "SELECT id, first, last, age FROM Employees";
         stmt.executeUpdate(
-                "CREATE TABLE Employees ( id INT(11) PRIMARY KEY, first VARCHAR(256),  last VARCHAR(256),age INTEGER)");
-        stmt.executeUpdate("INSERT INTO Employees VALUES(1,'Jack','Smith', 100)");
+                "CREATE TABLE if not exists Employees ( id INT(11) PRIMARY KEY, first VARCHAR(256),  last VARCHAR(256),age INTEGER)");
+        stmt.executeUpdate("INSERT ignore INTO Employees VALUES(1,'Jack','Smith', 100) ");
 
         ResultSet rs = stmt.executeQuery(sql);
 
