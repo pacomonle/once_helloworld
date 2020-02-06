@@ -23,38 +23,35 @@ public class App {
     static final String PASS = "once012020";
 
     public static void main(String[] args) throws Exception {
-      char n;
+      char sn;
       
-      Scanner scan = new Scanner(System.in);
+      Scanner scan = new Scanner (System.in);
       System.out.print("¿Quieres añadir un nuevo empleado (s/n)? ");
-      char n = scan.nextChar();
+      char sn = scan.nextChar(); 
       
-      while (condition) {
-        Scanner scan = new Scanner(System.in);
+     do while (sn == 's') {
+        Scanner a = new Scanner (System.in);
         System.out.print("¿firstname nuevo empleado? ");
-        String first = scan.nextString();
+        String first = a.nextString();
 
-        Scanner scan = new Scanner(System.in);
+        Scanner b = new Scanner (System.in);
         System.out.print("¿lastname nuevo empleado? ");
-        String last = scan.nextString();
+        String last = b.nextString();
 
-        Scanner scan = new Scanner(System.in);
+        Scanner c = new Scanner (System.in);
         System.out.print("¿age nuevo empleado? ");
-        int age = scan.nextInt();
-        }
+        int age = c.nextInt();
 
         
-      
+        a.close ();
+        b.close ();
+        c.close ();
+    
 
+       }
 
-      
-      String miMensaje = "Mi hola mundo";
-        System.out.println(miMensaje);
-
-        Persona persona = new Persona();
-        persona.setEdad(45);
-        persona.setNombre("Alfonso");
-        System.out.println(persona);
+        
+    
 
         Connection conn = null;
         Statement stmt = null;
@@ -71,8 +68,8 @@ public class App {
         String sql;
         sql = "SELECT id, first, last, age FROM Employees";
         stmt.executeUpdate(
-                "CREATE TABLE if not exists Employees ( id INT(11) PRIMARY KEY, first VARCHAR(256),  last VARCHAR(256),age INTEGER)");
-        stmt.executeUpdate("INSERT ignore INTO Employees VALUES(1,'Jack','Smith', 100) ");
+                "CREATE TABLE if not exists Employees ( id INT(11) NOT NULL auto_increment PRIMARY KEY, first VARCHAR(256),  last VARCHAR(256),age INTEGER)");
+        stmt.executeUpdate("INSERT ignore INTO Employees VALUES( first, last, age) ");
 
         ResultSet rs = stmt.executeQuery(sql);
 
