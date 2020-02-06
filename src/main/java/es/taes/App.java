@@ -1,6 +1,9 @@
 package es.taes;
 
 import java.sql.Statement;
+
+import org.hibernate.boot.archive.scan.spi.Scanner;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,14 +16,39 @@ public class App {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource";
-    static final String DB_URL = "jdbc:mysql://iprocuratio.com:3333/test_jdbc";
+    static final String DB_URL = "jdbc:mysql://iprocuratio.com:3333/Employees";
 
     // Database credentials
     static final String USER = "root";
     static final String PASS = "once012020";
 
     public static void main(String[] args) throws Exception {
-        String miMensaje = "Mi hola mundo";
+      char n;
+      
+      Scanner scan = new Scanner(System.in);
+      System.out.print("¿Quieres añadir un nuevo empleado (s/n)? ");
+      char n = scan.nextChar();
+      
+      while (condition) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("¿firstname nuevo empleado? ");
+        String first = scan.nextString();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("¿lastname nuevo empleado? ");
+        String last = scan.nextString();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("¿age nuevo empleado? ");
+        int age = scan.nextInt();
+        }
+
+        
+      
+
+
+      
+      String miMensaje = "Mi hola mundo";
         System.out.println(miMensaje);
 
         Persona persona = new Persona();
