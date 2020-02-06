@@ -2,7 +2,6 @@ package es.taes;
 
 import java.sql.Statement;
 
-import org.hibernate.boot.archive.scan.spi.Scanner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,48 +22,56 @@ public class App {
     static final String PASS = "once012020";
 
     public static void main(String[] args) throws Exception {
-      char sn;
+      Connection conn = null;
+      Statement stmt = null;
+
+      // Register JDBC driver
+      Class.forName(JDBC_DRIVER);
+
+      // Open a connection
+      System.out.println("Connecting to database...");
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      // Execute a query
+      System.out.println("Creating statement...");
+      stmt = conn.createStatement();
       
-      Scanner scan = new Scanner (System.in);
+     /* Scanner scan = new Scanner (System.in);
       System.out.print("¿Quieres añadir un nuevo empleado (s/n)? ");
-      char sn = scan.nextChar(); 
+      char sn = scan.nextChar(); */
       
-     do while (sn == 's') {
-        Scanner a = new Scanner (System.in);
+     //do while (sn == 's') {
+        java.util.Scanner a = new java.util.Scanner (System.in);
         System.out.print("¿firstname nuevo empleado? ");
-        String first = a.nextString();
+        String nombre = a.nextLine();
+        System.out.println ();
 
-        Scanner b = new Scanner (System.in);
+        java.util.Scanner b = new java.util.Scanner (System.in);
         System.out.print("¿lastname nuevo empleado? ");
-        String last = b.nextString();
+        String apellido = b.nextLine();
+        System.out.println ();
 
-        Scanner c = new Scanner (System.in);
+        java.util.Scanner c = new java.util.Scanner (System.in);
         System.out.print("¿age nuevo empleado? ");
-        int age = c.nextInt();
-
+        int edad = c.nextInt();
+        System.out.println ();
         
+    
+
+        stmt.executeUpdate(
+          "INSERT ignore INTO Employees(first, last, age) VALUES('" + nombre +  "' , '" +  apellido +  "',"  +  edad +")" 
+          );
+
         a.close ();
         b.close ();
         c.close ();
     
 
-       }
+     //  }
 
         
     
 
-        Connection conn = null;
-        Statement stmt = null;
-
-        // Register JDBC driver
-        Class.forName(JDBC_DRIVER);
-
-        // Open a connection
-        System.out.println("Connecting to database...");
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        // Execute a query
-        System.out.println("Creating statement...");
-        stmt = conn.createStatement();
+      
         String sql;
         sql = "SELECT id, first, last, age FROM Employees";
         stmt.executeUpdate(
